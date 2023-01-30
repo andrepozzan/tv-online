@@ -15,3 +15,10 @@ jobs:
         
     - name: Install dependencies
       run: npm install
+
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: node get-lives-urls.js
