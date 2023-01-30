@@ -21,4 +21,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: node $GITHUB_WORKSPACE/get-lives-urls.js
+      - run: node $GITHUB_WORKFLOW/get-lives-urls.js
