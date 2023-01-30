@@ -1,0 +1,10 @@
+name: Test Node with workflow
+
+on: push
+jobs:
+  name: Build with Node
+  runs-on: ubuntu-latest
+  container: node:12.18.4
+  steps:
+    - run: node --version
+    - run: npm --version
