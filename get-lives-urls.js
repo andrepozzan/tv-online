@@ -2,7 +2,7 @@ const fs = require("fs");
 const https = require("https");
 
 const livesUrlsFilePath = "livesUrl.json";
-const emissorasFilePath = "emissoras.json";
+const emissorasFilePath = "api/emissoras.json";
 const fileEncoding = "utf-8";
 
 function getOnEmissoras(parameter) {
