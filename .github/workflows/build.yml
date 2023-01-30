@@ -2,9 +2,12 @@ on: push
 jobs:
   build-node:
     runs-on: ubuntu-latest
-    container: node:16
     steps:
-      - run: node --version
-      - run: npm --version
       - uses: actions/checkout@v3
       - run: npm install
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+      - run: npm ci
+      - run: npm test
