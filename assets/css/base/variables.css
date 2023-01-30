@@ -1,0 +1,42 @@
+:root {
+    /* Colors */
+    --header-color: #143b44;
+    --body-background: #cfd9df;
+    --body-background-two: #e2ebf0;
+    --card-color-one: #c3cfe2;
+    --card-color-two: #f5f7fa;
+    --title-color: #FFFFFF;
+    --title-two-color: #141d1e;
+    --title-card-color: #153035;
+    --button-text-color: #14191c;
+    --button-color-one: #105a6a;
+    --button-modal-color: red;
+    --button-controls-next-color: green;
+    --button-controls-return-color: orange;
+
+    /* Fonts */
+    --title-font-family: 'Carter One', cursive;
+    --title-font-size: 3rem;
+    --title-font-weight: 900;
+    --title-two-font-family: 'Fugaz One', cursive;
+    --title-two-font-size: 1.4rem;
+    --paragraph-font-family: 'Jost', sans-serif;
+    --paragraph-font-weight: 200;
+    --title-card-font-size: 1.2rem;
+    --button-font-size: 1rem;
+    
+}
+
+/* Mobile */
+@media screen and (min-width: 0px) {
+    :root {
+        --modal-button-font-size: 1rem;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 426px) {
+    :root {
+        --modal-button-font-size: 1.2rem;
+    }
+}

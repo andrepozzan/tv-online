@@ -1,0 +1,98 @@
+.tv-channels__list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    margin-top: 1rem;
+}
+
+.tv-channels__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 1rem;
+    padding: .5rem;
+
+    background: linear-gradient(158.86deg, var(--card-color-one), var(--card-color-two));
+    
+    border-radius: 10px;
+    
+    text-align: center;
+    
+    overflow: hidden;
+    
+    transition: 200ms;
+}
+
+.tv-channels__card:hover {
+    transform: translateY(-5px);
+    box-shadow:5px 5px 20px 0 var(--title-card-color);
+}
+
+.tv-channels__image {
+    width: 5rem;
+    height: 5rem;
+
+    margin-bottom: 1.4rem;
+}
+
+.tv-channels__card__title {
+    font-family: var(--title-two-font-family);
+    font-size: var(--title-card-font-size);
+
+    color: var(--title-card-color);
+
+    margin-bottom: 1rem;
+}
+
+.tv-channels__button {
+    background-color: transparent;
+
+    padding: .3rem;
+
+    color: var(--button-text-color);
+
+    font-family: var(--title-two-font-family);
+    font-size: var(--button-font-size);
+
+    border: 2px outset var(--button-color-one);
+
+    border-radius: 5px;
+}
+
+/* Mobile */
+@media screen and (min-width: 0px) {
+    .tv-channels__card {
+        width: 35vw;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 426px) {
+    .tv-channels__card {
+        width: 25vw;
+    }
+}
+
+/* Laptop */
+@media screen and (min-width: 769px) {
+    .tv-channels__card {
+        width: 20vw;
+    }
+}
+
+/* Laptop Large */
+@media screen and (min-width: 1025px) {
+    .tv-channels__card {
+        width: 14vw;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 1441px) {
+    .tv-channels__card {
+        width: 10.5vw;
+    }
+}

@@ -1,0 +1,7 @@
+body {
+    background: linear-gradient(158.86deg, var(--body-background) 40%, var(--body-background-two) 60%);
+}
+
+button {
+    border: none;
+}

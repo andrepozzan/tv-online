@@ -1,0 +1,15 @@
+.tv-channels {
+    margin-top: 1rem;
+}
+
+.tv-channels__title {
+    font-family: var(--title-two-font-family);
+    font-size: var(--title-two-font-size);
+
+    color: var(--title-two-color);
+
+    text-decoration: underline;
+    text-shadow: 0 0 10px var(--card-color-two);
+
+    margin-left: 1rem;
+}

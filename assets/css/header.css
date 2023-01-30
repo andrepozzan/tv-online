@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    justify-content: center;
+
+    padding: 2rem;
+
+    background-color: var(--header-color);
+
+    color: var(--title-color);
+
+    font-family: var(--title-font-family);
+    font-size: var(--title-font-size);
+}
+
+.header__title {
+    text-shadow: 5px 5px 5px var(--title-card-color);
+
+    text-align: center;
+}
