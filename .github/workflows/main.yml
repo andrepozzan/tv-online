@@ -21,4 +21,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: node get-lives-urls.js
+      - run: ls
