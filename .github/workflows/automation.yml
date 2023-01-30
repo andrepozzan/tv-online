@@ -2,12 +2,21 @@ name: Test Node with workflow
 on: push
 jobs:
   first-job:
-    name: Build with Node
+    name: Build Node.js application
     runs-on: ubuntu-latest
     container: node:12.18.4
     steps:
-      - run: node --version
-      - run: npm --version
+      - name: Check Node.js version
+        run: node --version
+
+      - name: Check NPM version
+        run: npm --version
+
       - uses: actions/checkout@v3
-      - run: npm install
-      - run: node get-lives-urls.js
+
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Execute Node application
+        run: node get-lives-urls.js
+        run: ls
