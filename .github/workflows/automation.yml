@@ -17,6 +17,9 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
 
+      - name: Delete file livesUrls.json
+        run: rm api/livesUrls.json
+
       - name: Execute Node application
         run: node get-lives-urls.js
       - run: ls
