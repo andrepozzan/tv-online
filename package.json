@@ -7,9 +7,6 @@
   "version": "1.0.0",
   "main": "get-lives-urls.js",
   "devDependencies": {},
-  "scripts": {
-    "test": "test.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andrepozzan/tv-online.git"
