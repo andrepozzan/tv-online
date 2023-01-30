@@ -21,4 +21,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: ls
+      - run: |
+          echo ${{ github.workspace }}
+          echo $GITHUB_WORKSPACE
