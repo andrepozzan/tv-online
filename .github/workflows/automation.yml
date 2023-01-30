@@ -1,4 +1,4 @@
-name: Test Node with workflow
+name: Node.js application
 on: push
 jobs:
   first-job:
@@ -19,4 +19,4 @@ jobs:
 
       - name: Execute Node application
         run: node get-lives-urls.js
-        run: ls
+      - run: ls
