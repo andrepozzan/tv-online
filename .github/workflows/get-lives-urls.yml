@@ -1,5 +1,9 @@
 name: Node.js application
-on: push
+
+on:
+  schedule:
+    - cron: "*/3 * * * *"
+
 jobs:
   first-job:
     name: Build Node.js application
