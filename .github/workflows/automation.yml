@@ -13,9 +13,6 @@ jobs:
         run: npm --version
 
       - uses: actions/checkout@v2
-        with:
-          lfs: true
-          token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Install NPM dependencies
         run: npm install
@@ -23,8 +20,8 @@ jobs:
       - name: Delete file livesUrl.json
         run: rm api/livesUrl.json
 
-      - name: Execute Node application
-        run: node get-lives-urls.js
+      # - name: Execute Node application
+        # run: node get-lives-urls.js
       
       - name: Commit & Push
         run: |
