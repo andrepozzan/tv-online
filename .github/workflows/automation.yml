@@ -4,7 +4,7 @@ jobs:
   first-job:
     name: Build Node.js application
     runs-on: ubuntu-latest
-    container: node:12.18.4
+    container: node:16
     steps:
       - name: Check Node.js version
         run: node --version
@@ -12,7 +12,7 @@ jobs:
       - name: Check NPM version
         run: npm --version
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - name: Install NPM dependencies
         run: npm install
@@ -20,20 +20,13 @@ jobs:
       - name: Delete file livesUrl.json
         run: rm api/livesUrl.json
 
-      - name: Git Init
-        run: |
-          git init
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git remote add origin https://github.com/andrepozzan/tv-online.git
-          git checkout main
-          git pull origin main
-
       - name: Execute Node application
         run: node get-lives-urls.js
       
       - name: Commit & Push
         run: |
-          git add .
-          git commit -m "Update lives urls"
-          git push origin main
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A .
+          git commit -m "generated"
+          git push
