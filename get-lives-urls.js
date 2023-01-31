@@ -1,7 +1,7 @@
 const fs = require("fs");
 const https = require("https");
 
-const livesUrlsFilePath = "livesUrl.json";
+const livesUrlsFilePath = "api/livesUrl.json";
 const emissorasFilePath = "api/emissoras.json";
 const fileEncoding = "utf-8";
 
