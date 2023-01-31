@@ -25,6 +25,9 @@ jobs:
       
       - name: Commit & Push
         run: |
+          git init
+          git add remote origin https://github.com/andrepozzan/tv-online.git
+          git branch -M main
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
