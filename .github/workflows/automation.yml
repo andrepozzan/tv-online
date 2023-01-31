@@ -25,7 +25,7 @@ jobs:
           git init
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add remote origin https://github.com/andrepozzan/tv-online.git
+          git remote add origin https://github.com/andrepozzan/tv-online.git
           git branch -M main
           git pull origin main
 
