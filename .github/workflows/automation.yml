@@ -4,7 +4,7 @@ jobs:
   first-job:
     name: Build Node.js application
     runs-on: ubuntu-latest
-    container: node:16
+    # container: node:16
     steps:
       - name: Check Node.js version
         run: node --version
