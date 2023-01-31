@@ -20,16 +20,20 @@ jobs:
       - name: Delete file livesUrl.json
         run: rm api/livesUrl.json
 
+      - name: Git Init
+        run: |
+          git init
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add remote origin https://github.com/andrepozzan/tv-online.git
+          git branch -M main
+          git pull origin main
+
       - name: Execute Node application
         run: node get-lives-urls.js
       
       - name: Commit & Push
         run: |
-          git init
-          git add remote origin https://github.com/andrepozzan/tv-online.git
-          git branch -M main
-          git config user.name github-actions
-          git config user.email github-actions@github.com
           git add .
           git commit -m "Update lives urls"
           git push origin main
