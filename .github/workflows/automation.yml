@@ -26,8 +26,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git remote add origin https://github.com/andrepozzan/tv-online.git
-          git branch -M main
-          git pull origin main
+          git pull origin master
 
       - name: Execute Node application
         run: node get-lives-urls.js
@@ -36,4 +35,4 @@ jobs:
         run: |
           git add .
           git commit -m "Update lives urls"
-          git push origin main
+          git push origin master
