@@ -1,32 +1,16 @@
-const body = document.querySelector("body");
-const ulChannels = document.querySelector(".tv-channels__list");
-const ulIframe = document.querySelector(".iframe__list");
-
-async function getJSON(url) {
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        console.log("Error: " + e);
-    }
-}
-
-function getTitle(event, target, classTitle) {
+function getBroadcasterKeyUsingEvent(event, target) {
     if (target.tagName == "LI") {
         let element = event.target;
-        let title = element.querySelector(classTitle).textContent;
-        return title;
+        return element.dataset.broadcasterKey;
     } else if (target.tagName == "UL") {
-        return;
+        return false;
     } else {
         let element = event.target.parentNode;
-        let title = element.querySelector(classTitle).textContent;
-        return title;
+        return element.dataset.broadcasterKey;
     }
 }
 
-function createIframe(url, tag, emissora) {
+function createIframe(url, tag, broadcaster) {
     if (tag == "audio") {
         var iframe = document.createElement(tag);
         iframe.setAttribute("controls", "");
@@ -34,7 +18,7 @@ function createIframe(url, tag, emissora) {
         iframe.classList.add("modal__audio");
     } else if (tag == "video") {
         var iframe = document.createElement(tag);
-        iframe.id = emissora + "Video";
+        iframe.id = broadcaster + "Video";
         iframe.setAttribute("controls", "");
         iframe.setAttribute("autoplay", "");
         iframe.classList.add("modal__video");
@@ -57,22 +41,25 @@ function createButton(text, fistClass, secondClass) {
     return button;
 }
 
-function closeCamera(hls){
-    let modal = document.querySelector(".modal");
+function closeCamera(hls) {
+    let modal = document.querySelector("[data-modal]");
 
     body.addEventListener("click", (e) => {
         let eventTarget = e.target;
 
-        if (eventTarget == modal || eventTarget.parentNode == modal.querySelector(".modal__controls")) {
+        if (
+            eventTarget == modal ||
+            eventTarget.parentNode == modal.querySelector("[data-modal-controls]")
+        ) {
             hls.stopLoad();
             hls.destroy();
         }
-    })
+    });
 }
 
-async function openCamera(cameraUrl, emissora) {
+async function openCamera(cameraUrl, broadcaster) {
     if (await Hls.isSupported()) {
-        var video = document.getElementById(emissora + "Video");
+        var video = document.getElementById(broadcaster + "Video");
         var hls = new Hls();
         hls.loadSource(cameraUrl);
         hls.attachMedia(video);
@@ -86,15 +73,19 @@ async function openCamera(cameraUrl, emissora) {
         });
     }
 
-    closeCamera(hls);    
+    closeCamera(hls);
 }
 
-function createModal(api, emissora) {
+function createModal(broadcasterKey, broadcasterLiveUrl, broadcasterPlatform) {
     let li = document.createElement("li");
+    li.dataset.modal = "";
     li.classList.add("modal");
 
-    if (emissora.indexOf("radio") != -1) {
-        const iconPath = "assets/img/icons/" + emissora;
+    if (broadcasterPlatform == "youtube") {
+        var iframe = createIframe(broadcasterLiveUrl, "iframe");
+        li.appendChild(iframe);
+    } else if (broadcasterPlatform == "radioStations") {
+        const iconPath = "assets/img/icons/" + broadcasterKey;
 
         let contentRadio = document.createElement("div");
         contentRadio.classList.add("modal__content-radio");
@@ -104,37 +95,42 @@ function createModal(api, emissora) {
         img.classList.add("modal__image");
         contentRadio.appendChild(img);
 
-        var iframe = createIframe(api[emissora], "audio");
+        var iframe = createIframe(broadcasterLiveUrl, "audio");
         contentRadio.appendChild(iframe);
 
         li.appendChild(contentRadio);
-    } else if (emissora.indexOf("camera") != -1) {
-        let cameraUrl = api[emissora];
-        var iframe = createIframe(cameraUrl, "video", emissora);
+    } else if (broadcasterPlatform == "camera") {
+        let cameraUrl = broadcasterLiveUrl;
+        var iframe = createIframe(cameraUrl, "video", broadcasterKey);
 
-        openCamera(cameraUrl, emissora);
+        openCamera(cameraUrl, broadcasterKey);
 
-        li.appendChild(iframe);
-    } else {
-        var iframe = createIframe(api[emissora], "iframe");
         li.appendChild(iframe);
     }
 
     let div = document.createElement("div");
+    div.dataset.modalControls = "";
     div.classList.add("modal__controls");
 
     let buttonNext = createButton("Próximo >", "modal__button", "modal__controls__button--next");
+    buttonNext.dataset.channelsControl = "next";
     div.appendChild(buttonNext);
 
     let buttonClose = createButton("Fechar", "modal__button", "modal__controls__button--close");
+    buttonClose.dataset.channelsControl = "close";
     div.appendChild(buttonClose);
 
-    let buttonReturn = createButton("< Anterior", "modal__button", "modal__controls__button--return");
+    let buttonReturn = createButton(
+        "< Anterior",
+        "modal__button",
+        "modal__controls__button--return"
+    );
+    buttonReturn.dataset.channelsControl = "return";
     div.appendChild(buttonReturn);
 
     li.appendChild(div);
 
-    li.id = emissora;
+    li.id = broadcasterKey;
 
     ulIframe.appendChild(li);
 
@@ -142,72 +138,174 @@ function createModal(api, emissora) {
 }
 
 async function removeModal() {
-    let modal = document.querySelector(".modal");
+    let modal = document.querySelector("[data-modal]");
 
     modal.remove();
 }
 
-function closeModal(modal) {
+function addEventListenerToCloseModal(modal) {
     body.addEventListener("click", (e) => {
-        if (e.target == modal || e.target == modal.querySelector(".modal__controls__button--close")) {
+        if (
+            e.target == modal ||
+            e.target == modal.querySelector('[data-channels-control="close"]')
+        ) {
             removeModal();
         }
-    })
+    });
 }
 
-function addEventListernerControl(button, emissora, api, operation) {
+function checkIfBroadcastIndexIsInCorrectRange(
+    broadcasterToTargetIndex,
+    broadcastersOnScreenLength,
+    direction
+) {
+    if (broadcasterToTargetIndex + 1 >= broadcastersOnScreenLength) {
+        return 0;
+    } else if (broadcasterToTargetIndex - 1 < 0) {
+        return broadcastersOnScreenLength - 1;
+    } else {
+        return (broadcasterToTargetIndex += direction);
+    }
+}
+
+function checksIfTheButtonActionLeadsToAValidBroadcaster(buttonTypeControl, dataToChannelControls) {
+    const broadcastersOnScreenLength = dataToChannelControls.onScreen.length;
+    let direction = 0;
+
+    buttonTypeControl == "next" ? (direction = +1) : (direction = -1);
+
+    let broadcasterToTargetIndex = dataToChannelControls.onScreenIndex + direction;
+
+    let broadcasterToTargetKey = dataToChannelControls.onScreen[broadcasterToTargetIndex];
+    let broadcasterToTargetLiveUrl = dataToChannelControls.livesUrls[broadcasterToTargetKey];
+
+    while (!checkIfBroadcasterTargetIsValid(broadcasterToTargetIndex, broadcasterToTargetLiveUrl)) {
+        broadcasterToTargetIndex = checkIfBroadcastIndexIsInCorrectRange(
+            broadcasterToTargetIndex,
+            broadcastersOnScreenLength,
+            direction
+        );
+
+        broadcasterToTargetKey = dataToChannelControls.onScreen[broadcasterToTargetIndex];
+        broadcasterToTargetLiveUrl = dataToChannelControls.livesUrls[broadcasterToTargetKey];
+    }
+    return {
+        broadcasterToTargetKey,
+        broadcasterToTargetLiveUrl,
+        broadcasterToTargetIndex,
+    };
+}
+
+function addEventListenerOnChannelsControlsButtons(button, dataToChannelControls) {
     button.addEventListener("click", () => {
-        let number = operation;
+        const buttonTypeControl = button.dataset.channelsControl;
 
-        const emissorasList = document.querySelector(".tv-channels__list");
-        const titles = emissorasList.querySelectorAll(".tv-channels__card__title");
+        const { broadcasterToTargetKey, broadcasterToTargetLiveUrl, broadcasterToTargetIndex } =
+            checksIfTheButtonActionLeadsToAValidBroadcaster(
+                buttonTypeControl,
+                dataToChannelControls
+            );
 
-        let titlesLength = titles.length;
-        if (number == -1) {
-            number = titlesLength - 1;
-        } else if (number == titlesLength) {
-            number = 0;
-        }
-
-        const modal = createModal(api, emissora[number].id);
-
-        const buttonNext = modal.querySelector(".modal__controls__button--next");
-        const buttonReturn = modal.querySelector(".modal__controls__button--return");
-
-        closeModal(modal);
-
-        channelsControls(buttonNext, buttonReturn, emissora, api, number);
+        const broadcasterToTargetPlatform = getBroadcasterPlatform(
+            dataToChannelControls.JSONObject,
+            broadcasterToTargetKey
+        );
 
         removeModal();
 
-        return modal;
-    })
+        const modal = createModal(
+            broadcasterToTargetKey,
+            broadcasterToTargetLiveUrl,
+            broadcasterToTargetPlatform
+        );
+
+        const buttonNext = modal.querySelector('[data-channels-control="next"]');
+        const buttonReturn = modal.querySelector('[data-channels-control="return"]');
+
+        addEventListenerToCloseModal(modal);
+
+        dataToChannelControls.onScreenIndex = broadcasterToTargetIndex;
+        dataToChannelControls.next = buttonNext;
+        dataToChannelControls.return = buttonReturn;
+
+        addChannelControlsToTheModal(dataToChannelControls);
+    });
 }
 
-function channelsControls(buttonNext, buttonReturn, emissora, api, i) {
-    addEventListernerControl(buttonNext, emissora, api, i + 1);
-    addEventListernerControl(buttonReturn, emissora, api, i - 1);
+function addChannelControlsToTheModal(dataToChannelControls) {
+    addEventListenerOnChannelsControlsButtons(dataToChannelControls.next, dataToChannelControls);
+    addEventListenerOnChannelsControlsButtons(dataToChannelControls.return, dataToChannelControls);
 }
 
-ulChannels.addEventListener("click", async function (event) {
-    const api = await getJSON("api/livesUrl.json");
-
-    const emissorasList = document.querySelector(".tv-channels__list");
-    const titles = emissorasList.querySelectorAll(".tv-channels__card__title");
-    const emissoras = emissorasList.querySelectorAll(".tv-channels__card");
-
-    const target = event.target;
-    const title = getTitle(event, target, ".tv-channels__card__title");
-
-    for (let i = 0; i < titles.length; i++) {
-        if (title == titles[i].textContent) {
-            const modal = createModal(api, emissoras[i].id, i);
-
-            const buttonNext = modal.querySelector(".modal__controls__button--next");
-            const buttonReturn = modal.querySelector(".modal__controls__button--return");
-            closeModal(modal);
-
-            channelsControls(buttonNext, buttonReturn, emissoras, api, i);
-        }
+function checkIfBroadcasterTargetIsValid(broadcasterOnScreenIndex, broadcasterLiveUrl) {
+    if (
+        broadcasterOnScreenIndex != -1 &&
+        broadcasterLiveUrl != "error" &&
+        broadcasterLiveUrl != undefined
+    ) {
+        return true;
+    } else {
+        return false;
     }
-});
+}
+
+function addAllBroadcastersOnScreenInArray(broadcastersItens) {
+    let broadcastersOnScreen = [];
+
+    broadcastersItens.forEach((broadcaster) => {
+        broadcastersOnScreen.push(broadcaster.dataset.broadcasterKey);
+    });
+
+    return broadcastersOnScreen;
+}
+
+function getAllBroadcastersOnScreen() {
+    const broadcastersList = document.querySelector("[data-channels-list]");
+    const broadcastersItens = broadcastersList.querySelectorAll("[data-channels-card]");
+
+    return addAllBroadcastersOnScreenInArray(broadcastersItens);
+}
+
+function getBroadcasterPlatform(broadcastersJSONObject, broadcasterKey) {
+    const broadcaster = broadcastersJSONObject[broadcasterKey];
+    const broadcasterPlatform = broadcaster.broadcastPlatform;
+    return broadcasterPlatform;
+}
+
+async function checksWhichChannelWasClickedToCreateTheModal(event) {
+    const broadcasterLivesUrls = await getJSON(livesUrlsFilePath);
+
+    const broadcastersJSONObject = await getOnBroadcasters("broadcasters");
+
+    const broadcastersOnScreen = getAllBroadcastersOnScreen();
+
+    const broadcasterKey = getBroadcasterKeyUsingEvent(event, event.target);
+
+    const broadcasterOnScreenIndex = broadcastersOnScreen.indexOf(broadcasterKey);
+
+    const broadcasterLiveUrl = broadcasterLivesUrls[broadcasterKey];
+
+    const broadcasterPlatform = getBroadcasterPlatform(broadcastersJSONObject, broadcasterKey);
+
+    if (checkIfBroadcasterTargetIsValid(broadcasterOnScreenIndex, broadcasterLiveUrl)) {
+        const modal = createModal(broadcasterKey, broadcasterLiveUrl, broadcasterPlatform);
+
+        const buttonNext = modal.querySelector('[data-channels-control="next"]');
+        const buttonReturn = modal.querySelector('[data-channels-control="return"]');
+
+        addEventListenerToCloseModal(modal);
+
+        const dataToChannelControls = {
+            next: buttonNext,
+            return: buttonReturn,
+            livesUrls: broadcasterLivesUrls,
+            JSONObject: broadcastersJSONObject,
+            onScreen: broadcastersOnScreen,
+            onScreenIndex: broadcasterOnScreenIndex,
+        };
+
+        addChannelControlsToTheModal(dataToChannelControls);
+    }
+}
+
+ulChannels.addEventListener("click", checksWhichChannelWasClickedToCreateTheModal);

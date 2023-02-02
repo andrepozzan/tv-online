@@ -26,9 +26,24 @@
     transition: 200ms;
 }
 
+
+
 .tv-channels__card:hover {
     transform: translateY(-5px);
     box-shadow:5px 5px 20px 0 var(--title-card-color);
+}
+
+.tv-channels__card[data-broadcaster-offline="true"] {
+    opacity: .5;
+}
+
+.tv-channels__card[data-broadcaster-offline="true"] .tv-channels__image {
+    filter: grayscale(1);
+}
+
+.tv-channels__card[data-broadcaster-offline="true"]:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 .tv-channels__image {

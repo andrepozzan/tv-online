@@ -1,0 +1,208 @@
+{
+    "broadcasters": {
+        "pascom": {
+            "title": "Pascom Guaraniaçu",
+            "id": "pascomcag",
+            "broadcastPlatform": "facebook",
+            "categories": ["religion"]
+        },
+        "ucrania": {
+            "title": "Ucrânia ao VIVO!",
+            "id": "UCuyLmOJb7PVCvx8zbRT9_GQ",
+            "broadcastPlatform": "youtube",
+            "categories": ["camerasWorldwide"]
+        },
+        "cnn": {
+            "title": "CNN TV",
+            "id": "UCvdwhh_fDyWccR42-rReZLw",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "euroNews": {
+            "title": "Euronews",
+            "id": "UCUmEPYxmnyQDeRUcFkslmQw",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "recordNews": {
+            "title": "Record News",
+            "id": "UCuiLR4p6wQ3xLEm15pEn1Xw",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "franceEnglish": {
+            "title": "France English",
+            "id": "UCQfwfsi5VrQ8yKZ-UWmAEFg",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "jovemPan": {
+            "title": "Jovem Pan News",
+            "id": "UCP391YRAjSOdM_bwievgaZA",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "sbt": {
+            "title": "SBT",
+            "id": "UCHDfPYXReWt5EVIzBA6TzOQ",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "radioViola": {
+            "title": "Rádio Viola",
+            "id": "https://ice.fabricahost.com.br/violafm",
+            "broadcastPlatform": "radioStations",
+            "categories": ["radioStations", "news"]
+        },
+        "radioCantu": {
+            "title": "Rádio Cantu",
+            "id": "https://stm01.virtualcast.com.br:8874/live",
+            "broadcastPlatform": "radioStations",
+            "categories": ["radioStations", "news"]
+        },
+        "radioT": {
+            "title": "Rádio T",
+            "id": "https://ice.fabricahost.com.br/radiotcascavel",
+            "broadcastPlatform": "radioStations",
+            "categories": ["radioStations", "news"]
+        },
+        "tvSenado": {
+            "title": "TV Senado",
+            "id": "UCLgti7NuK0RuW9wty-fxPjQ",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "tvJustica": {
+            "title": "TV Justiça",
+            "id": "UC0qlZ5jxxueKNzUERcrllNw",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "rdcTv": {
+            "title": "RDC TV",
+            "id": "UCFx7YngsREshEqAX6zJ-XHg",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "tvCritica": {
+            "title": "TV A Crítica",
+            "id": "UCnLSKfHkgZ6ujEYCO9jq7Sw",
+            "broadcastPlatform": "youtube",
+            "categories": ["news"]
+        },
+        "ge": {
+            "title": "Central do Mercado",
+            "id": "UCgCKagVhzGnZcuP9bSMgMCg",
+            "broadcastPlatform": "youtube",
+            "categories": ["sport"]
+        },
+        "cbn": {
+            "title": "CBN Diário",
+            "id": "UCAFkdZV4g4HBTaJ85bLaLFQ",
+            "broadcastPlatform": "youtube",
+            "categories": ["radioStations","news"]
+        },
+        "tupi": {
+            "title": "Rádio Tupi",
+            "id": "UCkkqXUQYUT0pC8RjZpfTZCQ",
+            "broadcastPlatform": "youtube",
+            "categories": ["radioStations","news"]
+        },
+        "cartoonNetwork": {
+            "title": "Cartoon Network",
+            "id": "UC1toK6UDXwreacdepXYcyqA",
+            "broadcastPlatform": "youtube",
+            "categories": ["cartoon"]
+        },
+        "picaPau": {
+            "title": "Pica-Pau TV",
+            "id": "UCiFg-2CjsG_xcSsHNjDeLpw",
+            "broadcastPlatform": "youtube",
+            "categories": ["cartoon"]
+        },
+        "wbKids": {
+            "title": "WB Kids",
+            "id": "UC9trsD1jCTXXtN3xIOIU8gg",
+            "broadcastPlatform": "youtube",
+            "categories": ["cartoon"]
+        },
+        "serraRioDoRastro": {
+            "title": "Serra Rio do Rastro",
+            "id": "UCTlY00NCf0nKyldwBys3mrA",
+            "broadcastPlatform": "youtube",
+            "categories": ["camerasWorldwide"]
+        },
+        "exploreAfrica": {
+            "title": "Explore Africa",
+            "id": "UCiGOIXjFqy5_mUNxQNOMfHw",
+            "broadcastPlatform": "youtube",
+            "categories": ["camerasWorldwide"]
+        },
+        "nasa": {
+            "title": "NASA Space",
+            "id": "UCIR_LPmEQ9QHR0yB2lxgaxQ",
+            "broadcastPlatform": "youtube",
+            "categories": ["camerasWorldwide"]
+        },
+        "nasa2": {
+            "title": "NASA TV",
+            "id": "UCLA_DiR1FfKNvjuUpBHmylQ",
+            "broadcastPlatform": "youtube",
+            "categories": ["camerasWorldwide"]
+        },
+        "aeroGuarulhos": {
+            "title": "Aero Guarulhos",
+            "id": "UCNZCKDhAVtbh7sddChTxI7w",
+            "broadcastPlatform": "youtube",
+            "categories": ["camerasWorldwide"]
+        },
+        "aviationTv": {
+            "title": "Aviation TV",
+            "id": "UCNKQAsFBh59t4IixJDJYz-Q",
+            "broadcastPlatform": "youtube",
+            "categories": ["camerasWorldwide"]
+        },
+        "praiaCamboriu": {
+            "title": "Balneário Camboriú",
+            "id": "UCQnRFONVlt96xf5lYVr4Tzg",
+            "broadcastPlatform": "youtube",
+            "categories": ["camerasWorldwide"]
+        },
+        "cancaoNova": {
+            "title": "Canção Nova",
+            "id": "UCVrKQMmA2ew9LFzeIDaOFgw",
+            "broadcastPlatform": "youtube",
+            "categories": ["religion"]
+        },
+        "redeBrasil": {
+            "title": "Rede Brasil",
+            "id": "UCubxEhRi56_V4_eTzzcFwkA",
+            "broadcastPlatform": "youtube",
+            "categories": ["religion"]
+        },
+        "redeVida": {
+            "title": "REDEVIDA",
+            "id": "UCfQQQex4pz5UELZUVFa07Tw",
+            "broadcastPlatform": "youtube",
+            "categories": ["religion"]
+        },
+        "ritTv": {
+            "title": "RIT TV",
+            "id": "UCA0bOG0NUfJ855eDtHSxOkw",
+            "broadcastPlatform": "youtube",
+            "categories": ["religion"]
+        },
+        "tvAparecida": {
+            "title": "TV Aparecida",
+            "id": "UCfYrK5JU5EznsnK3wQE7iIg",
+            "broadcastPlatform": "youtube",
+            "categories": ["religion"]
+        },
+        "novoTempo": {
+            "title": "Rede Novo Tempo",
+            "id": "UC_OaSsAydgSIjUtjYn9qLog",
+            "broadcastPlatform": "youtube",
+            "categories": ["religion"]
+        }
+    }
+}
