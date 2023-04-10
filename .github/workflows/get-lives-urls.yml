@@ -2,7 +2,7 @@ name: Node.js application
 
 on:
   schedule:
-    - cron: "*/3 * * * *"
+    - cron: ""
 
 jobs:
   first-job:
