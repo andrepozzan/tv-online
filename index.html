@@ -1,71 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tv Online</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/icons/tvIcon.ico">
-    <link rel="stylesheet" href="assets/css/base/reset.css">
-    <link rel="stylesheet" href="assets/css/base/base.css">
-    <link rel="stylesheet" href="assets/css/base/variables.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/components/channels-card.css">
-    <link rel="stylesheet" href="assets/css/tv-channels.css">
-    <link rel="stylesheet" href="assets/css/components/modal.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-</head>
+    <link rel="icon" type="image/x-icon" href="assets/img/icons/tvIcon.ico" />
+    <link rel="stylesheet" href="assets/css/base/reset.css" />
+    <link rel="stylesheet" href="assets/css/base/base.css" />
+    <link rel="stylesheet" href="assets/css/base/variables.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/header.css" />
+    <link rel="stylesheet" href="assets/css/components/channels-card.css" />
+    <link rel="stylesheet" href="assets/css/tv-channels.css" />
+    <link rel="stylesheet" href="assets/css/components/modal.css" />
+    <link rel="stylesheet" href="assets/css/footer.css" />
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <h1 class="header__title">Tv Online</h1>
+      <h1 class="header__title">Tv Online</h1>
     </header>
     <main>
-        <section class="tv-channels container">
-            <h2 class="tv-channels__title">Canais Disponíveis</h2>
-            <ul class="tv-channels__list" data-channels-list>
-            </ul>
-        </section>
-        <section>
-            <ul class="iframe__list" data-iframe-list>
-            </ul>
-        </section>
+      <section class="tv-channels container">
+        <h2 class="tv-channels__title">Canais Disponíveis</h2>
+        <ul class="tv-channels__list" data-channels-list></ul>
+      </section>
+      <section>
+        <ul class="iframe__list" data-iframe-list></ul>
+      </section>
     </main>
     <footer>
-        <section class="footer">
-            <div>
-                <h2 class="footer__title">Tv Online</h2>
-                <p class="footer__paragraph">Site desenvolvido por: <a href="https://andrepozzan.github.io"
-                    class="footer__link" target="_blank">André Corso Pozzan</a></p>
-                    <address>
-                        <article>
-                            <p class="footer__paragraph">Email administrativo:
-                                <a href="mailto:admin@viajemais.inf.br" class="footer__link">admin@viajemais.inf.br</a>
-                            </p>
-                        </article>
-                    </address>
-            </div>
-            <ul class="footer__advertiser">
-                <h3 class="footer__subtitle">Anunciantes:</h3>
-                <li class="footer__advertiser__item">
-                    <a href="https://www.gcu.com.br" target="_blank">
-                        <img class="footer__advertiser-logo" src="assets/img/icons/gcu-logo-white.svg"
-                        alt="Gcu net internet e telecom">
-                    </a>
-                </li>
-            </ul>
-        </section>
+      <section class="footer">
+        <div>
+          <h2 class="footer__title">Tv Online</h2>
+          <p class="footer__paragraph">
+            Site desenvolvido por:
+            <a
+              href="https://github.com/andrepozzan"
+              class="footer__link"
+              target="_blank"
+              >André Corso Pozzan</a
+            >
+          </p>
+          <address>
+            <article>
+              <p class="footer__paragraph">
+                Email administrativo:
+                <a href="mailto:andrepozzan.dev@gmail.com" class="footer__link"
+                  >andrepozzan.dev@gmail.com</a
+                >
+              </p>
+            </article>
+          </address>
+        </div>
+        <ul class="footer__advertiser">
+          <h3 class="footer__subtitle">Anunciantes:</h3>
+          <li class="footer__advertiser__item">
+            <a href="https://www.gcu.com.br" target="_blank">
+              <img
+                class="footer__advertiser-logo"
+                src="assets/img/icons/gcu-logo-white.svg"
+                alt="Gcu net internet e telecom"
+              />
+            </a>
+          </li>
+        </ul>
+      </section>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="assets/js/global.js"></script>
     <script src="assets/js/create-Cads.js"></script>
     <script src="assets/js/modal.js"></script>
-</body>
-
+  </body>
 </html>
