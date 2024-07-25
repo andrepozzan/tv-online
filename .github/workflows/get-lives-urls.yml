@@ -2,7 +2,7 @@ name: Node.js application
 
 on:
   schedule:
-    - cron: ""
+    - cron: "*/3 * * * *"
 
 jobs:
   first-job:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Execute Node application
         run: node get-lives-urls.js
-      
+
       - name: Commit & Push
         run: |
           git config user.name github-actions
